@@ -1,6 +1,4 @@
-package spring.project.utiadmin.models;
-
-import org.springframework.data.annotation.Id;
+package models;
 
 import javax.persistence.*;
 

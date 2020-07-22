@@ -1,4 +1,4 @@
-package spring.project.utiadmin.models;
+package models;
 
 import org.springframework.data.annotation.Id;
 

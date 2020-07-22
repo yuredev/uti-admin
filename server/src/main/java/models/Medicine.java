@@ -1,4 +1,4 @@
-package spring.project.utiadmin.models;
+package models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
