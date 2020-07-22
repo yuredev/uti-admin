@@ -14,4 +14,8 @@ public class HospitalBed {
     @ManyToOne
     @JoinColumn(name = "hospital_id")
     Hospital hospital;
+
+    @OneToOne
+    @JoinColumn(name = "patient_cpf")
+    Patient patient;
 }

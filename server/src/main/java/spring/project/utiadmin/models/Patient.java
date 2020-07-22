@@ -1,9 +1,6 @@
 package spring.project.utiadmin.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Patient {
@@ -13,4 +10,7 @@ public class Patient {
     private String name;
     private Long phone;
     private Byte age;
+
+    @OneToOne(mappedBy = "patient")
+    HospitalBed hospitalBed;
 }
