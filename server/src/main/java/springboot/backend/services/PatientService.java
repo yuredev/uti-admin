@@ -12,7 +12,7 @@ public class PatientService {
     private PatientRepository repository;
 
     @Autowired
-    public void setPatientRepository(PatientRepository repository) {
+    public void setRepository(PatientRepository repository) {
         this.repository = repository;
     }
     public Patient save(Patient patient) {
