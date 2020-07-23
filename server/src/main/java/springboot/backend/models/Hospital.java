@@ -1,5 +1,6 @@
-package models;
+package springboot.backend.models;
 
+import org.hibernate.annotations.Fetch;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
@@ -7,11 +8,13 @@ import java.util.List;
 
 @Entity
 public class Hospital {
+    @javax.persistence.Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "hospital")
+    @JoinColumn
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     List<HospitalBed> hospitalBeds;
 }

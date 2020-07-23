@@ -1,4 +1,4 @@
-package models;
+package springboot.backend.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

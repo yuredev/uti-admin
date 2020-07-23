@@ -1,4 +1,4 @@
-package models;
+package springboot.backend.models;
 
 import javax.persistence.*;
 
@@ -10,7 +10,6 @@ public class HospitalBed {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "hospital_id")
     Hospital hospital;
 
     @OneToOne

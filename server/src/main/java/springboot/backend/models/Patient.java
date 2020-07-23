@@ -1,4 +1,4 @@
-package models;
+package springboot.backend.models;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,7 +15,7 @@ public class Patient {
     @OneToOne(mappedBy = "patient")
     HospitalBed hospitalBed;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "patient_medicine",
             joinColumns = @JoinColumn(name = "patient_cpf", referencedColumnName = "cpf"),
