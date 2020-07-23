@@ -22,9 +22,9 @@ public class PatientService {
         repository.delete(patient);
     }
     public Patient getOne(Long cpf) {
-        return repository.getOne(cpf);
+        return repository.findByCpf(cpf);
     }
-    public List<Patient> findAll() {
+    public List<Patient> getAll() {
         return repository.findAll();
     }
 }

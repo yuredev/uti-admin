@@ -1,16 +1,24 @@
 package springboot.backend.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 public class Patient {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cpf;
-    private String name;
-    private Long phone;
-    private Byte age;
+    @Column(nullable = false, unique = true)
+    Long cpf;
+
+    String name;
+    Long phone;
+    Byte age;
 
     @OneToOne(mappedBy = "patient")
     HospitalBed hospitalBed;

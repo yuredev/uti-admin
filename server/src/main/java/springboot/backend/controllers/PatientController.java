@@ -11,17 +11,17 @@ import java.util.List;
 @RequestMapping("/patients")
 public class PatientController {
     private PatientService service;
+
     @Autowired
     public void setService(PatientService service) {
         this.service = service;
     }
     @GetMapping
     public List<Patient> list() {
-        return service.findAll();
+        return service.getAll();
     }
     @PostMapping
     public Patient insert(@RequestBody Patient patient) {
         return service.save(patient);
     }
-
 }
