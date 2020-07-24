@@ -15,16 +15,23 @@ public class MedicineService {
     public void setRepository(MedicineRepository repository) {
         this.repository = repository;
     }
+
     public void save(Medicine medicine) {
-        this.repository.save(medicine);
+        repository.save(medicine);
     }
+
     public List<Medicine> getAll() {
-        return this.repository.findAll();
+        return repository.findAll();
     }
+
+    public Boolean alreadyExists(Medicine medicine) {
+        return repository.findByTitle(medicine.getTitle()) != null;
+    }
+
     public Medicine getOne(Integer id) {
-        return this.repository.findById(id).orElse(null);
+        return repository.findById(id).orElse(null);
     }
     public void delete(Medicine medicine) {
-        this.repository.delete(medicine);
+        repository.delete(medicine);
     }
 }
