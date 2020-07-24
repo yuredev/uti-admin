@@ -3,7 +3,6 @@ package springboot.backend.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Fetch;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
@@ -21,7 +20,7 @@ public class Hospital {
 
     private String name;
 
-    @JoinColumn
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    List<HospitalBed> hospitalBeds;
+//    @JoinColumn
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    List<HospitalBed> hospitalBeds;
 }

@@ -20,8 +20,8 @@ public class Patient {
     Long phone;
     Byte age;
 
-    @OneToOne(mappedBy = "patient")
-    HospitalBed hospitalBed;
+//    @OneToOne(mappedBy = "patient")
+//    HospitalBed hospitalBed;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(

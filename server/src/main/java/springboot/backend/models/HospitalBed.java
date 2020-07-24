@@ -17,6 +17,7 @@ public class HospitalBed {
 
     private String title;
 
+    @JoinColumn
     @ManyToOne
     Hospital hospital;
 
