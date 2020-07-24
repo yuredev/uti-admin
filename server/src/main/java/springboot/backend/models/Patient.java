@@ -14,11 +14,11 @@ import java.util.List;
 public class Patient {
     @Id
     @Column(nullable = false, unique = true)
-    Long cpf;
+    private Long cpf;
 
-    String name;
-    Long phone;
-    Byte age;
+    private String name;
+    private Long phone;
+    private Byte age;
 
 //    @OneToOne(mappedBy = "patient")
 //    HospitalBed hospitalBed;

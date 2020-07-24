@@ -16,15 +16,15 @@ public class PatientService {
         this.repository = repository;
     }
 
-    public Patient save(Patient patient) {
-        return repository.save(patient);
+    public void save(Patient patient) {
+        repository.save(patient);
     }
 
     public void delete(Patient patient) {
         repository.delete(patient);
     }
 
-    public Patient getOne(Long cpf) {
+    public Patient getByCpf(Long cpf) {
         return repository.findByCpf(cpf).orElse(null);
     }
 
