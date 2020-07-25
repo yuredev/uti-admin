@@ -19,9 +19,9 @@ public class HospitalBed {
 
     @JoinColumn
     @ManyToOne
-    Hospital hospital;
+    private Hospital hospital;
 
     @OneToOne
     @JoinColumn(name = "patient_cpf")
-    Patient patient;
+    private Patient patient;
 }

@@ -43,6 +43,7 @@ public class PatientController {
             service.save(patient);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

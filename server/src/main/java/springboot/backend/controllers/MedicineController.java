@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import springboot.backend.models.Medicine;
 import springboot.backend.services.MedicineService;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController

@@ -3,35 +3,54 @@ package springboot.backend.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springboot.backend.models.Medicine;
+import springboot.backend.models.Patient;
 import springboot.backend.repositories.MedicineRepository;
+import springboot.backend.repositories.PatientRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class MedicineService {
-    private MedicineRepository repository;
+    private final MedicineRepository medicineRepo;
+    private final PatientRepository patientRepo;
 
-    @Autowired
-    public void setRepository(MedicineRepository repository) {
-        this.repository = repository;
+    public MedicineService(MedicineRepository medicineRepo, PatientRepository patientRepo) {
+        this.medicineRepo = medicineRepo;
+        this.patientRepo = patientRepo;
     }
 
     public void save(Medicine medicine) {
-        repository.save(medicine);
+        medicineRepo.save(medicine);
     }
 
     public List<Medicine> getAll() {
-        return repository.findAll();
+        return medicineRepo.findAll();
     }
 
     public Boolean alreadyExists(Medicine medicine) {
-        return repository.findByTitle(medicine.getTitle()) != null;
+        return medicineRepo.findByTitle(medicine.getTitle()) != null;
     }
 
     public Medicine getOne(Integer id) {
-        return repository.findById(id).orElse(null);
+        return medicineRepo.findById(id).orElse(null);
     }
+
     public void delete(Medicine medicine) {
-        repository.delete(medicine);
+        List<Patient> patientList = patientRepo.findAll();
+        int numberOfMedicines;
+        List<Medicine> patientMedicines;
+
+        for (Patient patient : patientList) {
+            patientMedicines = patient.getMedicines();
+            numberOfMedicines = patientMedicines.size();
+            for (int i = 0; i < numberOfMedicines; i++) {
+                if (patientMedicines.get(i).equals(medicine)) {
+                    patientMedicines.remove(medicine);
+                    patientRepo.save(patient);
+                }
+            }
+        }
+        medicineRepo.delete(medicine);
     }
 }

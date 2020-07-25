@@ -1,5 +1,6 @@
 package springboot.backend.models;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,7 @@ public class Patient {
 //    @OneToOne(mappedBy = "patient")
 //    HospitalBed hospitalBed;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "patient_medicine",
             joinColumns = @JoinColumn(name = "patient_cpf", referencedColumnName = "cpf"),
