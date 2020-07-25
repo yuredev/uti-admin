@@ -8,7 +8,6 @@ import springboot.backend.repositories.MedicineRepository;
 import springboot.backend.repositories.PatientRepository;
 import springboot.backend.utils.CustomMethods;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

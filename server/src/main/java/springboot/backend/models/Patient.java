@@ -21,15 +21,21 @@ public class Patient {
     @Column(nullable = false, unique = true)
     private Long cpf;
 
-    @NotBlank(message = ErrorMessenger.BLANK_NAME)
-    @NotNull(message = ErrorMessenger.NULL_NAME)
+    @NotBlank(message = ErrorMessenger.BLANK)
+    @NotNull(message = ErrorMessenger.NULL)
     @Size(min = 2, max = 70, message = ErrorMessenger.OUT_OF_SIZE_NAME)
     private String name;
 
+    @NotBlank(message = ErrorMessenger.BLANK)
+    @NotNull(message = ErrorMessenger.NULL)
+    private String hospitalizationDate;
+
+    private String observations;
+
     private Long phone;
 
-    @NotNull(message = ErrorMessenger.NULL_AGE)
-    @Positive(message = ErrorMessenger.NEGATIVE_AGE)
+    @NotNull(message = ErrorMessenger.NULL)
+    @Positive(message = ErrorMessenger.NEGATIVE)
     private Byte age;
 
 //    @OneToOne(mappedBy = "patient")

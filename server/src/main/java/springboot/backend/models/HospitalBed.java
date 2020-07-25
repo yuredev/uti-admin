@@ -17,10 +17,6 @@ public class HospitalBed {
 
     private String title;
 
-    @JoinColumn
-    @ManyToOne
-    private Hospital hospital;
-
     @OneToOne
     @JoinColumn(name = "patient_cpf")
     private Patient patient;

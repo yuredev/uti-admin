@@ -20,7 +20,7 @@ public class Hospital {
 
     private String name;
 
-//    @JoinColumn
-//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-//    List<HospitalBed> hospitalBeds;
+    @JoinColumn
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    List<HospitalBed> hospitalBeds;
 }
