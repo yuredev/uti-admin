@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/medicines")
+@CrossOrigin(origins = {"http://localhost:3000"}, exposedHeaders = "X-Total-Count")
 public class MedicineController {
 
     private MedicineService service;

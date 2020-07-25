@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springboot.backend.models.Patient;
 import springboot.backend.repositories.PatientRepository;
+import springboot.backend.utils.CustomMethods;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class PatientService {
     }
 
     public void save(Patient patient) {
+        patient.setName(CustomMethods.firstLetterUpper(patient.getName()));
         repository.save(patient);
     }
 

@@ -1,11 +1,15 @@
 package springboot.backend.models;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import springboot.backend.utils.ErrorMessenger;
 
+import javax.validation.constraints.NotBlank;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @AllArgsConstructor
@@ -17,8 +21,15 @@ public class Patient {
     @Column(nullable = false, unique = true)
     private Long cpf;
 
+    @NotBlank(message = ErrorMessenger.BLANK_NAME)
+    @NotNull(message = ErrorMessenger.NULL_NAME)
+    @Size(min = 2, max = 70, message = ErrorMessenger.OUT_OF_SIZE_NAME)
     private String name;
+
     private Long phone;
+
+    @NotNull(message = ErrorMessenger.NULL_AGE)
+    @Positive(message = ErrorMessenger.NEGATIVE_AGE)
     private Byte age;
 
 //    @OneToOne(mappedBy = "patient")

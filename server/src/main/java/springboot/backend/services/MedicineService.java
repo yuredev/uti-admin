@@ -6,6 +6,7 @@ import springboot.backend.models.Medicine;
 import springboot.backend.models.Patient;
 import springboot.backend.repositories.MedicineRepository;
 import springboot.backend.repositories.PatientRepository;
+import springboot.backend.utils.CustomMethods;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ public class MedicineService {
     }
 
     public void save(Medicine medicine) {
+        medicine.setTitle(CustomMethods.firstLetterUpper(medicine.getTitle()));
         medicineRepo.save(medicine);
     }
 
