@@ -17,9 +17,9 @@ public class PatientService {
         this.repository = repository;
     }
 
-    public void save(Patient patient) {
+    public Patient save(Patient patient) {
         patient.setName(CustomMethods.firstLetterUpper(patient.getName()));
-        repository.save(patient);
+        return repository.save(patient);
     }
 
     public void delete(Patient patient) {

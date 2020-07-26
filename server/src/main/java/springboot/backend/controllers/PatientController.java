@@ -35,23 +35,23 @@ public class PatientController {
     }
 
     @PostMapping
-    public ResponseEntity<?> insert(@RequestBody Patient patient) {
+    public ResponseEntity<Patient> insert(@RequestBody Patient patient) {
         Patient patientFound = service.findByCpf(patient.getCpf());
         if (patientFound != null) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-        service.save(patient);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        Patient patientSaved = service.save(patient);
+        return ResponseEntity.status(HttpStatus.CREATED).body(patientSaved);
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Patient patient) {
+    public ResponseEntity<Patient> update(@PathVariable Integer id, @RequestBody Patient patient) {
         Patient patientFound = service.getOne(id);
         if (patientFound == null) {
             return ResponseEntity.notFound().build();
         }
-        service.save(patient);
-        return ResponseEntity.ok().build();
+        Patient patientSaved = service.save(patient);
+        return ResponseEntity.ok().body(patientSaved);
     }
 
     @DeleteMapping(path = "/{id}")
