@@ -40,22 +40,9 @@ public class PatientController {
 
     @PostMapping
     public ResponseEntity<Patient> insert(@RequestBody Patient patient) {
-        Patient patientFound = service.findByCpf(patient.getCpf());
-        if (patientFound != null) {
+        if (service.alreadyExists(patient)) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-        // CASCADE
-        ArrayList<Medicine> patientMedicines = new ArrayList<>();
-        Medicine medicineSaved;
-
-        for (Medicine med: patient.getMedicines()) {
-            medicineSaved = medService.save(med);
-            patientMedicines.add(medicineSaved);
-        }
-        patient.setMedicines(patientMedicines);
-        // -------------
-
-
         Patient patientSaved = service.save(patient);
         return ResponseEntity.status(HttpStatus.CREATED).body(patientSaved);
     }
