@@ -25,9 +25,9 @@ public class PatientController {
         return service.getAll();
     }
 
-    @GetMapping(path = {"/{cpf}"})
-    public ResponseEntity<Patient> getByCpf(@PathVariable Long cpf) {
-        Patient patientFound = service.getByCpf(cpf);
+    @GetMapping(path = {"/{id}"})
+    public ResponseEntity<Patient> getByCpf(@PathVariable Integer id) {
+        Patient patientFound = service.getOne(id);
         if (patientFound == null) {
             return ResponseEntity.notFound().build();
         }
@@ -36,22 +36,17 @@ public class PatientController {
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Patient patient) {
-        try {
-            Patient patientFound = service.getByCpf(patient.getCpf());
-            if (patientFound != null) {
-                return ResponseEntity.status(HttpStatus.CONFLICT).build();
-            }
-            service.save(patient);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        Patient patientFound = service.findByCpf(patient.getCpf());
+        if (patientFound != null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
+        service.save(patient);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping(path = "/{cpf}")
-    public ResponseEntity<?> update(@PathVariable Long cpf, @RequestBody Patient patient) {
-        Patient patientFound = service.getByCpf(cpf);
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Patient patient) {
+        Patient patientFound = service.getOne(id);
         if (patientFound == null) {
             return ResponseEntity.notFound().build();
         }
@@ -59,9 +54,9 @@ public class PatientController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping(path = "/{cpf}")
-    public ResponseEntity<?> delete(@PathVariable Long cpf) {
-        Patient patientFound = service.getByCpf(cpf);
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
+        Patient patientFound = service.getOne(id);
         if (patientFound == null) {
             return ResponseEntity.notFound().build();
         }

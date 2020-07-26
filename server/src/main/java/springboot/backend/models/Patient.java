@@ -18,6 +18,11 @@ import java.util.List;
 @Entity
 public class Patient {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @NotNull(message = ErrorMessenger.NULL)
+    @Positive(message = ErrorMessenger.NEGATIVE)
     @Column(nullable = false, unique = true)
     private Long cpf;
 
@@ -30,6 +35,7 @@ public class Patient {
     @NotNull(message = ErrorMessenger.NULL)
     private String hospitalizationDate;
 
+    @NotBlank(message = ErrorMessenger.BLANK)
     private String observations;
 
     private Long phone;
@@ -44,7 +50,7 @@ public class Patient {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "patient_medicine",
-            joinColumns = @JoinColumn(name = "patient_cpf", referencedColumnName = "cpf"),
+            joinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "medicine_id")
     )
     List<Medicine> medicines;

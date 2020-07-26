@@ -26,8 +26,12 @@ public class PatientService {
         repository.delete(patient);
     }
 
-    public Patient getByCpf(Long cpf) {
+    public Patient findByCpf(Long cpf) {
         return repository.findByCpf(cpf).orElse(null);
+    }
+
+    public Patient getOne(Integer id) {
+        return repository.findById(id).orElse(null);
     }
 
     public List<Patient> getAll() {

@@ -18,6 +18,6 @@ public class HospitalBed {
     private String title;
 
     @OneToOne
-    @JoinColumn(name = "patient_cpf")
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 }
