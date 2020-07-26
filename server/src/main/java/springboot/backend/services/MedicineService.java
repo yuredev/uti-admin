@@ -20,9 +20,9 @@ public class MedicineService {
         this.patientRepo = patientRepo;
     }
 
-    public void save(Medicine medicine) {
+    public Medicine save(Medicine medicine) {
         medicine.setTitle(CustomMethods.firstLetterUpper(medicine.getTitle()));
-        medicineRepo.save(medicine);
+        return medicineRepo.save(medicine);
     }
 
     public List<Medicine> getAll() {
@@ -30,7 +30,8 @@ public class MedicineService {
     }
 
     public Boolean alreadyExists(Medicine medicine) {
-        return medicineRepo.findByTitle(medicine.getTitle()) != null;
+        String medicineTitle = CustomMethods.firstLetterUpper(medicine.getTitle());
+        return medicineRepo.findByTitle(medicineTitle) != null;
     }
 
     public Medicine getOne(Integer id) {
@@ -48,6 +49,7 @@ public class MedicineService {
             for (int i = 0; i < numberOfMedicines; i++) {
                 if (patientMedicines.get(i).equals(medicine)) {
                     patientMedicines.remove(medicine);
+                    numberOfMedicines--;
                     patientRepo.save(patient);
                 }
             }

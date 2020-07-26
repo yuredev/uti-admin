@@ -4,20 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import springboot.backend.models.Medicine;
 import springboot.backend.models.Patient;
+import springboot.backend.services.MedicineService;
 import springboot.backend.services.PatientService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/patients")
 @CrossOrigin(origins = {"http://localhost:3000"}, exposedHeaders = "X-Total-Count")
 public class PatientController {
-    private PatientService service;
+    private final PatientService service;
+    private final MedicineService medService;
 
-    @Autowired
-    public void setService(PatientService service) {
+    public PatientController(PatientService service, MedicineService medService) {
         this.service = service;
+        this.medService = medService;
     }
 
     @GetMapping
@@ -40,6 +44,18 @@ public class PatientController {
         if (patientFound != null) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
+        // CASCADE
+        ArrayList<Medicine> patientMedicines = new ArrayList<>();
+        Medicine medicineSaved;
+
+        for (Medicine med: patient.getMedicines()) {
+            medicineSaved = medService.save(med);
+            patientMedicines.add(medicineSaved);
+        }
+        patient.setMedicines(patientMedicines);
+        // -------------
+
+
         Patient patientSaved = service.save(patient);
         return ResponseEntity.status(HttpStatus.CREATED).body(patientSaved);
     }

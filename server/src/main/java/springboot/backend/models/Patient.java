@@ -47,7 +47,7 @@ public class Patient {
 //    @OneToOne(mappedBy = "patient")
 //    HospitalBed hospitalBed;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "patient_medicine",
             joinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "id"),
