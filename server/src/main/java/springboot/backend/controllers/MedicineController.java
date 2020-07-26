@@ -39,17 +39,17 @@ public class MedicineController {
         if (medicineService.didAlreadyExists(medicine)) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-        medicineService.save(medicine);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        Medicine medicineCreated = medicineService.save(medicine);
+        return ResponseEntity.status(HttpStatus.CREATED).body(medicineCreated);
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Medicine medicine) {
+    public ResponseEntity<Medicine> update(@PathVariable Integer id, @RequestBody Medicine medicine) {
         if (!medicineService.didAlreadyExists(id)) {
             return ResponseEntity.notFound().build();
         }
-        medicineService.save(medicine);
-        return ResponseEntity.ok().build();
+        Medicine medicineUpdated = medicineService.save(medicine);
+        return ResponseEntity.ok().body(medicineUpdated);
     }
 
     @DeleteMapping(path = "/{id}")

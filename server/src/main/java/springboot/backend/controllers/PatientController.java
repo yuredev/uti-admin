@@ -37,8 +37,8 @@ public class PatientController {
         if (patientService.didAlreadyExists(patient.getCpf())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-        Patient patientSaved = patientService.save(patient);
-        return ResponseEntity.status(HttpStatus.CREATED).body(patientSaved);
+        Patient patientCreated = patientService.save(patient);
+        return ResponseEntity.status(HttpStatus.CREATED).body(patientCreated);
     }
 
     @PutMapping(path = "/{id}")
@@ -47,8 +47,8 @@ public class PatientController {
         if (!patientService.didAlreadyExists(id)) {
             return ResponseEntity.notFound().build();
         }
-        Patient patientSaved = patientService.save(patient);
-        return ResponseEntity.ok().body(patientSaved);
+        Patient patientUpdated = patientService.save(patient);
+        return ResponseEntity.ok().body(patientUpdated);
     }
 
     @DeleteMapping(path = "/{id}")
