@@ -47,10 +47,16 @@ public class PatientService {
         patientRepository.delete(patient);
     }
 
-    public Boolean alreadyExists(Patient patient) {
-        Optional<Patient> patientFound = patientRepository.findByCpf(patient.getCpf());
+    public Boolean didAlreadyExists(Long cpf) {
+        Optional<Patient> patientFound = patientRepository.findByCpf(cpf);
         return patientFound.isPresent();
     }
+
+    public Boolean didAlreadyExists(Integer id) {
+        Optional<Patient> patientFound = patientRepository.findById(id);
+        return patientFound.isPresent();
+    }
+
 //    public Patient findByCpf(Long cpf) {
 //        return patientRepository.findByCpf(cpf).orElse(null);
 //    }

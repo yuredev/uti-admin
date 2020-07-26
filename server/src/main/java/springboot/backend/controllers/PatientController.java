@@ -40,7 +40,7 @@ public class PatientController {
 
     @PostMapping
     public ResponseEntity<Patient> insert(@RequestBody Patient patient) {
-        if (service.alreadyExists(patient)) {
+        if (service.didAlreadyExists(patient.getCpf())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
         Patient patientSaved = service.save(patient);
@@ -49,8 +49,8 @@ public class PatientController {
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<Patient> update(@PathVariable Integer id, @RequestBody Patient patient) {
-        Patient patientFound = service.getOne(id);
-        if (patientFound == null) {
+        // if anyone patient owns the id of the path variable
+        if (!service.didAlreadyExists(id)) {
             return ResponseEntity.notFound().build();
         }
         Patient patientSaved = service.save(patient);
