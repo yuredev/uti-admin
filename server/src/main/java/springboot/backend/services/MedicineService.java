@@ -1,6 +1,5 @@
 package springboot.backend.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springboot.backend.models.Medicine;
 import springboot.backend.models.Patient;
@@ -9,6 +8,7 @@ import springboot.backend.repositories.PatientRepository;
 import springboot.backend.utils.CustomMethods;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MedicineService {
@@ -29,9 +29,14 @@ public class MedicineService {
         return medicineRepo.findAll();
     }
 
-    public Boolean alreadyExists(Medicine medicine) {
+    public Boolean didAlreadyExists(Medicine medicine) {
         String medicineTitle = CustomMethods.firstLetterUpper(medicine.getTitle());
         return medicineRepo.findByTitle(medicineTitle) != null;
+    }
+
+    public Boolean didAlreadyExists(Integer id) {
+        Optional<Medicine> medicineFound = medicineRepo.findById(id);
+        return medicineFound.isPresent();
     }
 
     public Medicine getOne(Integer id) {

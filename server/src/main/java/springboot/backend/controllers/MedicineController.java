@@ -14,21 +14,20 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000"}, exposedHeaders = "X-Total-Count")
 public class MedicineController {
 
-    private MedicineService service;
+    private final MedicineService medicineService;
 
-    @Autowired
-    public void setService(MedicineService service) {
-        this.service = service;
+    public MedicineController(MedicineService medicineService) {
+        this.medicineService = medicineService;
     }
 
     @GetMapping
-    public List<Medicine> getAll() {
-        return service.getAll();
+    public List<Medicine> list() {
+        return medicineService.getAll();
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Medicine> getOne(@PathVariable Integer id) {
-        Medicine medicineFound = service.getOne(id);
+        Medicine medicineFound = medicineService.getOne(id);
         if (medicineFound == null) {
             return ResponseEntity.notFound().build();
         }
@@ -37,35 +36,29 @@ public class MedicineController {
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Medicine medicine) {
-        try {
-            if (service.alreadyExists(medicine)) {
-                return ResponseEntity.status(HttpStatus.CONFLICT).build();
-            }
-            service.save(medicine);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        if (medicineService.didAlreadyExists(medicine)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
+        medicineService.save(medicine);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Medicine medicine) {
-        Medicine medicineFound = service.getOne(id);
-        if (medicineFound == null) {
+        if (!medicineService.didAlreadyExists(id)) {
             return ResponseEntity.notFound().build();
         }
-        service.save(medicine);
+        medicineService.save(medicine);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
-        Medicine medicineFound = service.getOne(id);
+        Medicine medicineFound = medicineService.getOne(id);
         if (medicineFound == null) {
             return ResponseEntity.notFound().build();
         }
-        service.delete(medicineFound);
+        medicineService.delete(medicineFound);
         return ResponseEntity.ok().build();
     }
 }
