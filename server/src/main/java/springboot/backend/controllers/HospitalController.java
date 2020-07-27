@@ -5,9 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springboot.backend.models.Hospital;
 import springboot.backend.services.HospitalService;
-import springboot.backend.utils.ErrorMessenger;
-import springboot.backend.utils.ResponseError;
+import springboot.backend.utils.Message;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -40,9 +40,11 @@ public class HospitalController {
             Hospital hospitalCreated = hospitalService.save(hospital);
             return ResponseEntity.status(HttpStatus.CREATED).body(hospitalCreated);
         } catch (Exception e) {
-            if (e.getMessage().equals(ErrorMessenger.PATIENT_IN_ANOTHER_BED)) {
-                ResponseError resError = new ResponseError(e.getMessage());
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(resError);
+            if (e.getMessage().equals(Message.PATIENT_IN_ANOTHER_BED)) {
+                HashMap<String, String> resBody = new HashMap<>();
+                resBody.put("message", Message.PATIENT_IN_ANOTHER_BED);
+                resBody.put("description", Message.PATIENT_IN_ANOTHER_BED_DESCRIPTION);
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(resBody);
             } else {
                 System.out.println(e.getMessage());
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -59,9 +61,11 @@ public class HospitalController {
             Hospital hospitalUpdated = hospitalService.save(hospital);
             return ResponseEntity.status(HttpStatus.CREATED).body(hospitalUpdated);
         } catch (Exception e) {
-            if (e.getMessage().equals(ErrorMessenger.PATIENT_IN_ANOTHER_BED)) {
-                ResponseError resError = new ResponseError(e.getMessage());
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(resError);
+            if (e.getMessage().equals(Message.PATIENT_IN_ANOTHER_BED)) {
+                HashMap<String, String> resBody = new HashMap<>();
+                resBody.put("error", Message.PATIENT_IN_ANOTHER_BED);
+                resBody.put("message", Message.PATIENT_IN_ANOTHER_BED_DESCRIPTION);
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(resBody);
             } else {
                 System.out.println(e.getMessage());
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

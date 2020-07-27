@@ -5,10 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springboot.backend.models.HospitalBed;
-import springboot.backend.models.Patient;
 import springboot.backend.services.HospitalBedService;
-import springboot.backend.utils.ErrorMessenger;
+import springboot.backend.utils.Message;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -33,22 +33,20 @@ public class HospitalBedController {
         if (bedFound == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok().body(bedFound);
+        return ResponseEntity.ok(bedFound);
     }
 
-//    na hora de atualizar ou criar leito de UTI
-//    verificar se o cpf passado pertence á algum paciente criado
-//    que está sem leito, se sim no leito a ser atualizado ou criado
-//    deverá haver um set com esse paciente sem leito
-
     @PostMapping
-    public ResponseEntity<HospitalBed> insert(@RequestBody HospitalBed bed) {
+    public ResponseEntity<?> save(@RequestBody HospitalBed bed) {
         try {
             HospitalBed bedCreated = service.save(bed);
             return ResponseEntity.status(HttpStatus.CREATED).body(bedCreated);
         } catch (Exception e) {
-            if (e.getMessage().equals(ErrorMessenger.PATIENT_IN_ANOTHER_BED)) {
-                return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            if (e.getMessage().equals(Message.PATIENT_IN_ANOTHER_BED)) {
+                HashMap<String, String> resBody = new HashMap<>();
+                resBody.put("error", Message.PATIENT_IN_ANOTHER_BED);
+                resBody.put("message", Message.PATIENT_IN_ANOTHER_BED_DESCRIPTION);
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(resBody);
             } else {
                 System.out.println(e.getMessage());
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -57,21 +55,11 @@ public class HospitalBedController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<HospitalBed> update(@PathVariable Integer id, @RequestBody HospitalBed bed) {
+    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody HospitalBed bed) {
         if (!service.didAlreadyExists(id)) {
             return ResponseEntity.notFound().build();
         }
-        try {
-            HospitalBed bedUpdated = service.save(bed);
-            return ResponseEntity.status(HttpStatus.CREATED).body(bedUpdated);
-        } catch (Exception e) {
-            if (e.getMessage().equals(ErrorMessenger.PATIENT_IN_ANOTHER_BED)) {
-                return ResponseEntity.status(HttpStatus.CONFLICT).build();
-            } else {
-                System.out.println(e.getMessage());
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            }
-        }
+        return this.save(bed);
     }
 
     @DeleteMapping(path = "/{id}")

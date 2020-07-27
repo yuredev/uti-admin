@@ -16,12 +16,12 @@ import java.util.Optional;
 @Service
 public class PatientService {
     private final PatientRepository patientRepository;
-    private final MedicineRepository medicineRepository;
+    private final MedicineService medicineService;
     private final HospitalBedRepository bedRepository;
 
-    public PatientService(PatientRepository patientRepository, MedicineRepository medicineRepository, HospitalBedRepository bedRepository) {
+    public PatientService(PatientRepository patientRepository, MedicineService medicineService, HospitalBedRepository bedRepository) {
         this.patientRepository = patientRepository;
-        this.medicineRepository = medicineRepository;
+        this.medicineService = medicineService;
         this.bedRepository = bedRepository;
     }
 
@@ -33,15 +33,14 @@ public class PatientService {
         // because CascadeType.ALL in Patient class is missing
         ArrayList<Medicine> patientMedicines = new ArrayList<>();
         Medicine medicineSaved;
-
-        for (Medicine med: patient.getMedicines()) {
-            medicineSaved = medicineRepository.save(med);
+        for (Medicine med : patient.getMedicines()) {
+            medicineSaved = medicineService.save(med);
             patientMedicines.add(medicineSaved);
         }
         patient.setMedicines(patientMedicines);
+        return patientRepository.save(patient);
         // -------------
 
-        return patientRepository.save(patient);
     }
 
     public void delete(Patient patient) {
@@ -72,6 +71,10 @@ public class PatientService {
 //    }
     public Patient getOne(Integer id) {
         return patientRepository.findById(id).orElse(null);
+    }
+
+    public Patient getOne(Long cpf) {
+        return patientRepository.findByCpf(cpf).orElse(null);
     }
 
     public List<Patient> getAll() {

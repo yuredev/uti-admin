@@ -3,7 +3,7 @@ package springboot.backend.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import springboot.backend.utils.ErrorMessenger;
+import springboot.backend.utils.Message;
 
 import javax.validation.constraints.NotBlank;
 import javax.persistence.*;
@@ -21,31 +21,28 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message = ErrorMessenger.NULL)
-    @Positive(message = ErrorMessenger.NEGATIVE)
+    @NotNull(message = Message.NULL)
+    @Positive(message = Message.NEGATIVE)
     @Column(nullable = false, unique = true)
     private Long cpf;
 
-    @NotBlank(message = ErrorMessenger.BLANK)
-    @NotNull(message = ErrorMessenger.NULL)
-    @Size(min = 2, max = 70, message = ErrorMessenger.OUT_OF_SIZE_NAME)
+    @NotBlank(message = Message.BLANK)
+    @NotNull(message = Message.NULL)
+    @Size(min = 2, max = 70, message = Message.OUT_OF_SIZE_NAME)
     private String name;
 
-    @NotBlank(message = ErrorMessenger.BLANK)
-    @NotNull(message = ErrorMessenger.NULL)
+    @NotBlank(message = Message.BLANK)
+    @NotNull(message = Message.NULL)
     private String hospitalizationDate;
 
-    @NotBlank(message = ErrorMessenger.BLANK)
+    @NotBlank(message = Message.BLANK)
     private String observations;
 
     private Long phone;
 
-    @NotNull(message = ErrorMessenger.NULL)
-    @Positive(message = ErrorMessenger.NEGATIVE)
+    @NotNull(message = Message.NULL)
+    @Positive(message = Message.NEGATIVE)
     private Byte age;
-
-//    @OneToOne(mappedBy = "patient")
-//    HospitalBed hospitalBed;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
