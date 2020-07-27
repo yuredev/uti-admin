@@ -55,7 +55,7 @@ public class HospitalBedService {
         return bedRepository.findById(id).orElse(null);
     }
 
-    public Boolean didAlreadyExists(Integer id) {
+    public boolean didAlreadyExists(Integer id) {
         Optional<HospitalBed> bedFound = bedRepository.findById(id);
         return bedFound.isPresent();
     }

@@ -22,12 +22,12 @@ public class HospitalBedController {
         this.service = service;
     }
 
-    @RequestMapping
+    @GetMapping
     public List<HospitalBed> list() {
         return service.getAll();
     }
 
-    @RequestMapping(path = "/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<HospitalBed> getOne(@PathVariable Integer id) {
         HospitalBed bedFound = service.getOne(id);
         if (bedFound == null) {
@@ -62,8 +62,8 @@ public class HospitalBedController {
             return ResponseEntity.notFound().build();
         }
         try {
-            HospitalBed bedCreated = service.save(bed);
-            return ResponseEntity.status(HttpStatus.CREATED).body(bedCreated);
+            HospitalBed bedUpdated = service.save(bed);
+            return ResponseEntity.status(HttpStatus.CREATED).body(bedUpdated);
         } catch (Exception e) {
             if (e.getMessage().equals(ErrorMessenger.PATIENT_IN_ANOTHER_BED)) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).build();
