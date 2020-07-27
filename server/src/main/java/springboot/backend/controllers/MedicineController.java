@@ -12,7 +12,6 @@ import java.util.List;
 @RequestMapping("/medicines")
 @CrossOrigin(origins = {"http://localhost:3000"}, exposedHeaders = "X-Total-Count")
 public class MedicineController {
-
     private final MedicineService medicineService;
 
     public MedicineController(MedicineService medicineService) {
@@ -34,7 +33,7 @@ public class MedicineController {
     }
 
     @PostMapping
-    public ResponseEntity<?> insert(@RequestBody Medicine medicine) {
+    public ResponseEntity<Medicine> insert(@RequestBody Medicine medicine) {
         if (medicineService.didAlreadyExists(medicine)) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }

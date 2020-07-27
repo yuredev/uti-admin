@@ -1,8 +1,10 @@
 package springboot.backend.services;
 
 import org.springframework.stereotype.Service;
+import springboot.backend.models.HospitalBed;
 import springboot.backend.models.Medicine;
 import springboot.backend.models.Patient;
+import springboot.backend.repositories.HospitalBedRepository;
 import springboot.backend.repositories.MedicineRepository;
 import springboot.backend.repositories.PatientRepository;
 import springboot.backend.utils.CustomMethods;
@@ -15,10 +17,12 @@ import java.util.Optional;
 public class PatientService {
     private final PatientRepository patientRepository;
     private final MedicineRepository medicineRepository;
+    private final HospitalBedRepository bedRepository;
 
-    public PatientService(PatientRepository patientRepository, MedicineRepository medicineRepository) {
+    public PatientService(PatientRepository patientRepository, MedicineRepository medicineRepository, HospitalBedRepository bedRepository) {
         this.patientRepository = patientRepository;
         this.medicineRepository = medicineRepository;
+        this.bedRepository = bedRepository;
     }
 
     public Patient save(Patient patient) {
@@ -41,6 +45,15 @@ public class PatientService {
     }
 
     public void delete(Patient patient) {
+        // remove the patient from the hospital bed that he is using before delete
+        List<HospitalBed> hospitalBeds = bedRepository.findAll();
+        for (HospitalBed bed : hospitalBeds) {
+            if (bed.getPatient().equals(patient)) {
+                bed.setPatient(null);
+                bedRepository.save(bed);
+                break;
+            }
+        }
         patientRepository.delete(patient);
     }
 

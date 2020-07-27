@@ -15,9 +15,7 @@ public class HospitalBed {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String title;
-
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "patient_id")
     private Patient patient;
 }
