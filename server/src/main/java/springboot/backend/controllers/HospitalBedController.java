@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springboot.backend.models.HospitalBed;
+import springboot.backend.models.Patient;
 import springboot.backend.services.HospitalBedService;
 import springboot.backend.utils.ErrorMessenger;
 
@@ -35,13 +36,18 @@ public class HospitalBedController {
         return ResponseEntity.ok().body(bedFound);
     }
 
+//    na hora de atualizar ou criar leito de UTI
+//    verificar se o cpf passado pertence á algum paciente criado
+//    que está sem leito, se sim no leito a ser atualizado ou criado
+//    deverá haver um set com esse paciente sem leito
+
     @PostMapping
     public ResponseEntity<HospitalBed> insert(@RequestBody HospitalBed bed) {
         try {
             HospitalBed bedCreated = service.save(bed);
             return ResponseEntity.status(HttpStatus.CREATED).body(bedCreated);
         } catch (Exception e) {
-            if (e.getMessage().equals(ErrorMessenger.CPF_ALREADY_IN_USE)) {
+            if (e.getMessage().equals(ErrorMessenger.PATIENT_IN_ANOTHER_BED)) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).build();
             } else {
                 System.out.println(e.getMessage());
@@ -59,7 +65,7 @@ public class HospitalBedController {
             HospitalBed bedCreated = service.save(bed);
             return ResponseEntity.status(HttpStatus.CREATED).body(bedCreated);
         } catch (Exception e) {
-            if (e.getMessage().equals(ErrorMessenger.CPF_ALREADY_IN_USE)) {
+            if (e.getMessage().equals(ErrorMessenger.PATIENT_IN_ANOTHER_BED)) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).build();
             } else {
                 System.out.println(e.getMessage());

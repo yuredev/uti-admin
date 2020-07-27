@@ -1,6 +1,6 @@
 ### TODO List
 
-- Update do leito de UTI com paciente sem leito 
+- Update do leito de UTI com paciente sem leito ✔
 
 > na hora de atualizar ou criar leito de UTI <br/>
 verificar se o cpf passado pertence á algum 
