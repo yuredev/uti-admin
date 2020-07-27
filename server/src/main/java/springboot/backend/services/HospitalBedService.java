@@ -1,7 +1,5 @@
 package springboot.backend.services;
 
-import org.apache.tomcat.jni.Error;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springboot.backend.models.HospitalBed;
 import springboot.backend.models.Medicine;
@@ -9,7 +7,6 @@ import springboot.backend.models.Patient;
 import springboot.backend.repositories.HospitalBedRepository;
 import springboot.backend.repositories.MedicineRepository;
 import springboot.backend.repositories.PatientRepository;
-import springboot.backend.utils.CustomMethods;
 import springboot.backend.utils.ErrorMessenger;
 
 import java.util.ArrayList;
