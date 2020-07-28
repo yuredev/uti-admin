@@ -5,9 +5,6 @@ import {
   TextField,
   EditButton,
   ReferenceField,
-  // Create,
-  // SimpleForm,
-  // TextInput
 } from 'react-admin';
 
 const HospitalBedsList = (props) => (
@@ -15,11 +12,25 @@ const HospitalBedsList = (props) => (
     <Datagrid>
       <TextField source="id" />
       <EditButton />
-      <ReferenceField source="patient" reference="patients">
+      <ReferenceField source="patient_id" reference="patients">
         <TextField source="id" />
       </ReferenceField>
     </Datagrid>
   </List>
 );
+
+// const HospitalBedsCreate = (props) => (
+//   <Create title={<span>Insert HospitalBed</span>} {...props}>
+//     <SimpleForm>
+//       <ArrayInput source="">
+//         <SimpleFormIterator>
+//           <TextInput source="id" label="id" />
+//           <TextInput source="title" label="title" />
+//           <TextInput source="stripe" label="stripe" />
+//         </SimpleFormIterator>
+//       </ArrayInput>
+//     </SimpleForm>
+//   </Create>
+// );
 
 export { HospitalBedsList };

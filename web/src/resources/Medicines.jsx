@@ -1,5 +1,13 @@
 import React from 'react';
-import { List, Datagrid, TextField, EditButton } from 'react-admin';
+import {
+  List,
+  Datagrid,
+  TextField,
+  EditButton,
+  Create,
+  SimpleForm,
+  TextInput,
+} from 'react-admin';
 
 const MedicinesList = (props) => (
   <List {...props}>
@@ -12,4 +20,13 @@ const MedicinesList = (props) => (
   </List>
 );
 
-export { MedicinesList };
+const MedicineCreate = (props) => (
+  <Create title={<span>Insert Medicine</span>} {...props}>
+    <SimpleForm>
+      <TextInput source="title" />
+      <TextInput source="stripe" />
+    </SimpleForm>
+  </Create>
+);
+
+export { MedicinesList, MedicineCreate };

@@ -1,5 +1,15 @@
 import React from 'react';
-import { List, Datagrid, TextField, EditButton } from 'react-admin';
+import {
+  List,
+  Datagrid,
+  TextField,
+  EditButton,
+  Create,
+  SimpleForm,
+  TextInput,
+  ArrayInput,
+  SimpleFormIterator,
+} from 'react-admin';
 
 const HospitalsList = (props) => (
   <List {...props}>
@@ -15,4 +25,19 @@ const HospitalsList = (props) => (
   </List>
 );
 
-export { HospitalsList };
+const HospitalCreate = (props) => (
+  <Create title={<span>Insert Hospital</span>} {...props}>
+    <SimpleForm>
+      <TextInput source="name" />
+      <ArrayInput source="hospital-beds">
+        <SimpleFormIterator>
+          {/* <TextInput source="id" label="id" />
+          <TextInput source="title" label="title" />
+          <TextInput source="stripe" label="stripe" /> */}
+        </SimpleFormIterator>
+      </ArrayInput>
+    </SimpleForm>
+  </Create>
+);
+
+export { HospitalsList, HospitalCreate };
