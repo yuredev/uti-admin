@@ -1,27 +1,36 @@
 import React from 'react';
 import {
+  ArrayInput,
+  SimpleFormIterator,
   List,
   Datagrid,
   TextField,
-  EditButton,
   Create,
   SimpleForm,
-  TextInput
+  TextInput,
+  ArrayField,
 } from 'react-admin';
 
 const PatientsList = (props) => (
   <List {...props}>
-    <Datagrid>
+    <Datagrid rowClick="edit">
       {/* campos do paciente buscado */}
-      <TextField source="cpf" />
-      <TextField source="name" />
-      <TextField source="phone" />
-      <TextField multiline source="observations" />
-      <TextField source="hospitalizationDate" />
-      <TextField source="age" />
-      <TextField multiline source="medicines" />
       <TextField source="id" />
-      <EditButton />
+      <TextField source="name" />
+      <TextField source="cpf" />
+      <TextField source="age" />
+      <TextField source="phone" />
+      <TextField source="observations" />
+      <TextField source="hospitalizationDate" />
+
+      <ArrayField source="medicines">
+        <Datagrid>
+          <TextField source="title" />
+          <TextField source="stripe" />
+        </Datagrid>
+      </ArrayField>
+
+      {/* <TextField source="medicines" /> */}
     </Datagrid>
   </List>
 );
@@ -29,13 +38,19 @@ const PatientsList = (props) => (
 const PatientCreate = (props) => (
   <Create title={<span>Insert Patient</span>} {...props}>
     <SimpleForm>
-      <TextInput source="cpf" />
       <TextInput source="name" />
-      <TextInput source="phone" />
-      <TextInput source="hospitalizationDate" />
-      <TextInput source="observations" />
+      <TextInput source="cpf" />
       <TextInput source="age" />
-      {/*<TextInput multiline source="medicines" />*/}
+      <TextInput source="phone" />
+      <TextInput source="observations" />
+      <TextInput source="hospitalizationDate" />
+      <ArrayInput source="medicines">
+        <SimpleFormIterator>
+          <TextInput source="id" label="id" />
+          <TextInput source="title" label="title" />
+          <TextInput source="stripe" label="stripe" />
+        </SimpleFormIterator>
+      </ArrayInput>
     </SimpleForm>
   </Create>
 );
