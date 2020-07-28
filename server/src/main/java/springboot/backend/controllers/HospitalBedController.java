@@ -39,8 +39,8 @@ public class HospitalBedController {
     @PostMapping
     public ResponseEntity<?> save(@RequestBody HospitalBed bed) {
         try {
-            HospitalBed bedCreated = service.save(bed);
-            return ResponseEntity.status(HttpStatus.CREATED).body(bedCreated);
+            HospitalBed bedSaved = service.save(bed);
+            return ResponseEntity.status(HttpStatus.CREATED).body(bedSaved);
         } catch (Exception e) {
             if (e.getMessage().equals(Message.PATIENT_IN_ANOTHER_BED)) {
                 HashMap<String, String> resBody = new HashMap<>();

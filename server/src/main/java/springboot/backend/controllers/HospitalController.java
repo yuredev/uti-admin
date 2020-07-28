@@ -35,10 +35,10 @@ public class HospitalController {
     }
 
     @PostMapping
-    public ResponseEntity<?> insert(@RequestBody Hospital hospital) {
+    public ResponseEntity<?> save(@RequestBody Hospital hospital) {
         try {
-            Hospital hospitalCreated = hospitalService.save(hospital);
-            return ResponseEntity.status(HttpStatus.CREATED).body(hospitalCreated);
+            Hospital hospitalSaved = hospitalService.save(hospital);
+            return ResponseEntity.status(HttpStatus.CREATED).body(hospitalSaved);
         } catch (Exception e) {
             if (e.getMessage().equals(Message.PATIENT_IN_ANOTHER_BED)) {
                 HashMap<String, String> resBody = new HashMap<>();
@@ -57,19 +57,6 @@ public class HospitalController {
         if (!hospitalService.didAlreadyExists(id)) {
             return ResponseEntity.notFound().build();
         }
-        try {
-            Hospital hospitalUpdated = hospitalService.save(hospital);
-            return ResponseEntity.status(HttpStatus.CREATED).body(hospitalUpdated);
-        } catch (Exception e) {
-            if (e.getMessage().equals(Message.PATIENT_IN_ANOTHER_BED)) {
-                HashMap<String, String> resBody = new HashMap<>();
-                resBody.put("error", Message.PATIENT_IN_ANOTHER_BED);
-                resBody.put("message", Message.PATIENT_IN_ANOTHER_BED_DESCRIPTION);
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(resBody);
-            } else {
-                System.out.println(e.getMessage());
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            }
-        }
+        return this.save(hospital);
     }
 }
