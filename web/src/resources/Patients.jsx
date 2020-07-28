@@ -33,7 +33,7 @@ const PatientCreate = (props) => (
       <TextInput source="name" />
       <TextInput source="phone" />
       <TextInput source="hospitalizationDate" />
-      <TextInput multiline source="observations" />
+      <TextInput source="observations" />
       <TextInput source="age" />
       {/*<TextInput multiline source="medicines" />*/}
     </SimpleForm>
