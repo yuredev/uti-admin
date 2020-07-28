@@ -35,17 +35,18 @@ public class HospitalController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody Hospital hospital) throws Exception {
-        Hospital hospitalSaved = hospitalService.save(hospital);
-        return ResponseEntity.status(HttpStatus.CREATED).body(hospitalSaved);
+    public ResponseEntity<Hospital> insert(@RequestBody Hospital hospital) {
+        Hospital hospitalCreated = hospitalService.save(hospital);
+        return ResponseEntity.status(HttpStatus.CREATED).body(hospitalCreated);
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Hospital hospital) throws Exception {
+    public ResponseEntity<Hospital> update(@PathVariable Integer id, @RequestBody Hospital hospital) {
         if (!hospitalService.didAlreadyExists(id)) {
             return ResponseEntity.notFound().build();
         }
-        return this.save(hospital);
+        Hospital hospitalUpdated = hospitalService.save(hospital);
+        return ResponseEntity.ok(hospitalUpdated);
     }
 
     @DeleteMapping(path = "/{id}")

@@ -5,7 +5,6 @@ import springboot.backend.models.HospitalBed;
 import springboot.backend.models.Medicine;
 import springboot.backend.models.Patient;
 import springboot.backend.repositories.HospitalBedRepository;
-import springboot.backend.repositories.MedicineRepository;
 import springboot.backend.repositories.PatientRepository;
 import springboot.backend.utils.CustomMethods;
 
@@ -33,9 +32,11 @@ public class PatientService {
         // because CascadeType.ALL in Patient class is missing
         ArrayList<Medicine> patientMedicines = new ArrayList<>();
         Medicine medicineSaved;
-        for (Medicine med : patient.getMedicines()) {
-            medicineSaved = medicineService.save(med);
-            patientMedicines.add(medicineSaved);
+        if (patient.getMedicines() != null) {
+            for (Medicine med : patient.getMedicines()) {
+                medicineSaved = medicineService.save(med);
+                patientMedicines.add(medicineSaved);
+            }
         }
         patient.setMedicines(patientMedicines);
         return patientRepository.save(patient);
@@ -47,10 +48,12 @@ public class PatientService {
         // remove the patient from the hospital bed that he is using before delete
         List<HospitalBed> hospitalBeds = bedRepository.findAll();
         for (HospitalBed bed : hospitalBeds) {
-            if (bed.getPatient().equals(patient)) {
-                bed.setPatient(null);
-                bedRepository.save(bed);
-                break;
+            if (bed.getPatient() != null) {
+                if (bed.getPatient().equals(patient)) {
+                    bed.setPatient(null);
+                    bedRepository.save(bed);
+                    break;
+                }
             }
         }
         patientRepository.delete(patient);
@@ -66,15 +69,8 @@ public class PatientService {
         return patientFound.isPresent();
     }
 
-//    public Patient findByCpf(Long cpf) {
-//        return patientRepository.findByCpf(cpf).orElse(null);
-//    }
     public Patient getOne(Integer id) {
         return patientRepository.findById(id).orElse(null);
-    }
-
-    public Patient getOne(Long cpf) {
-        return patientRepository.findByCpf(cpf).orElse(null);
     }
 
     public List<Patient> getAll() {

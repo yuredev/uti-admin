@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import springboot.backend.models.HospitalBed;
 import springboot.backend.models.Patient;
 import springboot.backend.repositories.HospitalBedRepository;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -12,9 +13,9 @@ public class HospitalBedService {
     private final HospitalBedRepository bedRepository;
     private final PatientService patientService;
 
-    public HospitalBedService(HospitalBedRepository bedRepository, PatientService patientService) {
-        this.bedRepository = bedRepository;
-        this.patientService = patientService;
+    public HospitalBedService(HospitalBedRepository hbs, PatientService ps) {
+        this.bedRepository = hbs;
+        this.patientService = ps;
     }
 
     public List<HospitalBed> getAll() {
@@ -37,6 +38,7 @@ public class HospitalBedService {
     }
 
     public void delete(HospitalBed hospitalBed) {
+        patientService.delete(hospitalBed.getPatient());
         bedRepository.delete(hospitalBed);
     }
 }

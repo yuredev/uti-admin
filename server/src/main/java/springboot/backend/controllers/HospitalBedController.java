@@ -37,29 +37,18 @@ public class HospitalBedController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody HospitalBed bed) {
-        try {
-            HospitalBed bedSaved = service.save(bed);
-            return ResponseEntity.status(HttpStatus.CREATED).body(bedSaved);
-        } catch (Exception e) {
-            if (e.getMessage().equals(Message.PATIENT_IN_ANOTHER_BED)) {
-                HashMap<String, String> resBody = new HashMap<>();
-                resBody.put("error", Message.PATIENT_IN_ANOTHER_BED);
-                resBody.put("message", Message.PATIENT_IN_ANOTHER_BED_DESCRIPTION);
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(resBody);
-            } else {
-                System.out.println(e.getMessage());
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            }
-        }
+    public ResponseEntity<HospitalBed> insert(@RequestBody HospitalBed bed) {
+        HospitalBed bedCreated = service.save(bed);
+        return ResponseEntity.status(HttpStatus.CREATED).body(bedCreated);
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody HospitalBed bed) {
+    public ResponseEntity<HospitalBed> update(@PathVariable Integer id, @RequestBody HospitalBed bed) {
         if (!service.didAlreadyExists(id)) {
             return ResponseEntity.notFound().build();
         }
-        return this.save(bed);
+        HospitalBed bedUpdated = service.save(bed);
+        return ResponseEntity.ok(bedUpdated);
     }
 
     @DeleteMapping(path = "/{id}")
