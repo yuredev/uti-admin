@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("/hospital")
+@RequestMapping("/hospitals")
 @CrossOrigin(origins = {"http://localhost:3000"}, exposedHeaders = "X-Total-Count")
 public class HospitalController {
     private final HospitalService hospitalService;
@@ -35,28 +35,26 @@ public class HospitalController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody Hospital hospital) {
-        try {
-            Hospital hospitalSaved = hospitalService.save(hospital);
-            return ResponseEntity.status(HttpStatus.CREATED).body(hospitalSaved);
-        } catch (Exception e) {
-            if (e.getMessage().equals(Message.PATIENT_IN_ANOTHER_BED)) {
-                HashMap<String, String> resBody = new HashMap<>();
-                resBody.put("message", Message.PATIENT_IN_ANOTHER_BED);
-                resBody.put("description", Message.PATIENT_IN_ANOTHER_BED_DESCRIPTION);
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(resBody);
-            } else {
-                System.out.println(e.getMessage());
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            }
-        }
+    public ResponseEntity<?> save(@RequestBody Hospital hospital) throws Exception {
+        Hospital hospitalSaved = hospitalService.save(hospital);
+        return ResponseEntity.status(HttpStatus.CREATED).body(hospitalSaved);
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Hospital hospital) {
+    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody Hospital hospital) throws Exception {
         if (!hospitalService.didAlreadyExists(id)) {
             return ResponseEntity.notFound().build();
         }
         return this.save(hospital);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
+        Hospital hospitalFound = hospitalService.getOne(id);
+        if (hospitalFound == null) {
+            return ResponseEntity.notFound().build();
+        }
+        hospitalService.delete(hospitalFound);
+        return ResponseEntity.ok().build();
     }
 }
