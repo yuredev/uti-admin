@@ -3,7 +3,7 @@ import { Admin, Resource } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
 import { PatientsList, PatientCreate, PatientEdit } from './resources/Patients';
 import { HospitalsList } from './resources/Hospitals';
-import { HospitalBedsList } from './resources/HospitalBeds';
+import { HospitalBedsList, HospitalBedsCreate } from './resources/HospitalBeds';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { FaHospital, FaUser } from 'react-icons/fa';
 import { GiHealthCapsule, GiBed } from 'react-icons/gi';
@@ -54,6 +54,7 @@ export default () => {
         icon={GiBed}
         options={{ label: 'Beds' }}
         list={HospitalBedsList}
+        create={HospitalBedsCreate}
       />
     </Admin>
   );

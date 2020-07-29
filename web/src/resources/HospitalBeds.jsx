@@ -3,6 +3,11 @@ import {
   List,
   Datagrid,
   TextField,
+  Create,
+  SimpleForm,
+  SelectInput,
+  ReferenceInput,
+  TextInput,
   ReferenceField,
 } from 'react-admin';
 
@@ -17,4 +22,31 @@ const HospitalBedsList = props => (
   </List>
 );
 
-export { HospitalBedsList };
+const HospitalBedsCreate = props => (
+  <Create title={<span>Insert Hospital Bed</span>} {...props} >
+    <SimpleForm>
+      <h1>Não deu</h1>
+      <ReferenceInput source="patients.id" reference="patients" label="Patient id">
+        <SelectInput optionText="name" />
+      </ReferenceInput>   
+      <ReferenceInput source="name" reference="patients" label="Patient id">
+        <TextInput source="name" />
+      </ReferenceInput>   
+      <h1>Não deu tbm</h1>
+      <ReferenceInput source="id" reference="patients" label="Patient id">
+        <TextInput source="id" />
+      </ReferenceInput>   
+      <ReferenceInput source="cpf" reference="patients" label="Patient id">
+        <TextInput source="cpf" />
+      </ReferenceInput>     
+      {/* <ReferenceInput source="id" reference="patients" label="Patient id">
+        <TextInput source="id" />
+      </ReferenceInput>   
+      <ReferenceInput source="id" reference="patients" label="Patient id">
+        <TextInput source="id" />
+      </ReferenceInput>    */}
+    </SimpleForm>
+  </Create>
+)
+
+export { HospitalBedsList, HospitalBedsCreate };
