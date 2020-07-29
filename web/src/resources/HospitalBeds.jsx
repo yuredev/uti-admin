@@ -6,7 +6,7 @@ import {
   ReferenceField,
 } from 'react-admin';
 
-const HospitalBedsList = (props) => (
+const HospitalBedsList = props => (
   <List {...props}>
     <Datagrid>
       <TextField source="id" />

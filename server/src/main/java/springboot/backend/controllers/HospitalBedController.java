@@ -38,6 +38,8 @@ public class HospitalBedController {
 
     @PostMapping
     public ResponseEntity<HospitalBed> insert(@RequestBody HospitalBed bed) {
+        if (bed.getPatient() != null) 
+        	System.out.println(bed.getPatient().getName());
         HospitalBed bedCreated = service.save(bed);
         return ResponseEntity.status(HttpStatus.CREATED).body(bedCreated);
     }

@@ -12,7 +12,7 @@ import {
   ArrayField,
 } from 'react-admin';
 
-const PatientsList = (props) => (
+const PatientsList = props => (
   <List {...props}>
     <Datagrid rowClick="edit">
       <TextField source="id" />
@@ -32,7 +32,7 @@ const PatientsList = (props) => (
   </List>
 );
 
-const PatientCreate = (props) => (
+const PatientCreate = props => (
   <Create title={<span>Insert Patient</span>} {...props}>
     <SimpleForm>
       <TextInput source="name" />
@@ -52,7 +52,7 @@ const PatientCreate = (props) => (
   </Create>
 );
 
-const PatientEdit = (props) => (
+const PatientEdit = props => (
   <Edit title={<span>Edit Patient</span>} {...props}>
     <SimpleForm>
       <TextInput source="name" />

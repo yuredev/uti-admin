@@ -5,9 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springboot.backend.models.Hospital;
 import springboot.backend.services.HospitalService;
-import springboot.backend.utils.Message;
 
-import java.util.HashMap;
 import java.util.List;
 
 @RestController
