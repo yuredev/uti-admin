@@ -29,16 +29,13 @@ const HospitalBedsCreate = props => (
       <ReferenceInput source="patients.id" reference="patients" label="Patient id">
         <SelectInput optionText="name" />
       </ReferenceInput>   
-      <ReferenceInput source="name" reference="patients" label="Patient id">
-        <TextInput source="name" />
-      </ReferenceInput>   
-      <h1>Não deu tbm</h1>
-      <ReferenceInput source="id" reference="patients" label="Patient id">
-        <TextInput source="id" />
-      </ReferenceInput>   
-      <ReferenceInput source="cpf" reference="patients" label="Patient id">
+      <h1>Não deu tbm</h1>  
+      <ReferenceInput source="cpf" reference="patients" label="Patient cpf">
         <TextInput source="cpf" />
       </ReferenceInput>     
+      <ReferenceInput source="name" reference="patients" label="Patient name">
+        <TextInput source="name" />
+      </ReferenceInput>   
       {/* <ReferenceInput source="id" reference="patients" label="Patient id">
         <TextInput source="id" />
       </ReferenceInput>   
