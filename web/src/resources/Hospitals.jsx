@@ -14,4 +14,4 @@ const HospitalsList = props => (
   </List>
 );
 
-export { HospitalsList, HospitalCreate };
+export { HospitalsList };
