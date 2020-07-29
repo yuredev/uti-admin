@@ -3,7 +3,6 @@ import {
   List,
   Datagrid,
   TextField,
-  EditButton,
   Create,
   SimpleForm,
   TextInput,
@@ -13,14 +12,9 @@ import {
 
 const HospitalsList = (props) => (
   <List {...props}>
-    <Datagrid>
+    <Datagrid rowClick="edit">
       <TextField source="id" />
       <TextField source="name" />
-      {/* <TextField source="" />
-      <TextField source="" />
-      <TextField source="" />
-      <TextField source="" /> */}
-      <EditButton />
     </Datagrid>
   </List>
 );
