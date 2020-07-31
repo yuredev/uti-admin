@@ -86,7 +86,9 @@ e
     src="screenshots/patients.png"
   >
   <h3>Responsivo Para Celulares</h3>
-  <img style="
+</p>
+<p style="display: flex; justify-content: space-around;">
+   <img style="
     border-width: 40px 10px; 
     border-style: solid; 
     border-color: black;
@@ -101,6 +103,5 @@ e
     src="screenshots/side-menu.png"
   >
 </p>
-
 
 <h4 align="center"> <em>&lt;/&gt;</em> by <a href="https://github.com/yuredev" target="_blank">yuredev</a> </h4>
