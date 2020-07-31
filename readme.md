@@ -43,7 +43,7 @@ e
 <p align="center">
   <img style="
     max-width: 800px;"
-    src="screenshots/class-diagram.png"
+    src="screenshots/class-diagram.PNG"
   >
 </p>
 
@@ -52,7 +52,7 @@ e
 <p align="center">
   <img style="
     max-width: 800px;"
-    src="screenshots/database-mer.png"
+    src="screenshots/database-mer.PNG"
   >
 </p>
 
