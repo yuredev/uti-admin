@@ -17,6 +17,8 @@ e
   React Admin
 </a>.
 
+</h3>
+
 <p align="center"> 
   Este projeto foi desenvolvido como trabalho final da disciplina de Programação Web da 
   faculdade de Análise e Desenvolvimento de Sistemas da <a href="https://ufrn.br/">UFRN</a>
@@ -26,13 +28,13 @@ e
 
 <h3> Conhecimentos Aplicados </h3>
 
-> Arquitetura REST
+- Arquitetura REST
 
-> Conceitos HTTP
+- Conceitos HTTP
 
-> Mapeamento Objeto Relacional (ORM)
+- Mapeamento Objeto Relacional (ORM)
 
-> Modelo MVC
+- Modelo MVC
 
 <h3> Telas </h3>
 
