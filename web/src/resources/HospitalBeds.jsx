@@ -5,7 +5,8 @@ import {
   TextField,
   Create,
   SimpleForm,
-  EditButton,
+  DateInput,
+  DateField,
   SimpleFormIterator,
   ArrayInput,
   TextInput,
@@ -14,11 +15,11 @@ import {
 
 const HospitalBedsList = (props) => (
   <List {...props}>
-    <Datagrid>
+    <Datagrid rowClick="edit">
       <TextField source="id" />
       <TextField source="patient.name" label="Ocuped by" />
       <TextField source="patient.observations" label="Observations" />
-      <EditButton />
+      <DateField source="patient.hospitalizationDate" label="Hospitalization Date" />
     </Datagrid>
   </List>
 );
@@ -31,7 +32,7 @@ const HospitalBedsCreate = (props) => (
       <TextInput label="Patient Age" source="patient.age" />
       <TextInput label="Patient Phone" source="patient.phone" />
       <TextInput label="Patient Observations" source="patient.observations" />
-      <TextInput
+      <DateInput
         label="Patient Hospitalization Date"
         source="patient.hospitalizationDate"
       />
@@ -55,7 +56,7 @@ const HospitalsBedsEdit = (props) => (
       <TextInput label="Patient Age" source="patient.age" />
       <TextInput label="Patient Phone" source="patient.phone" />
       <TextInput label="Patient Observations" source="patient.observations" />
-      <TextInput
+      <DateInput
         label="Patient Hospitalization Date"
         source="patient.hospitalizationDate"
       />

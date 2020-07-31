@@ -7,7 +7,7 @@ import {
   ArrayInput,
   SimpleForm,
   DateInput,
-  ArrayField,
+  Edit,
   Create,
   SimpleFormIterator,
 } from 'react-admin';
@@ -53,4 +53,36 @@ const HospitalsCreate = props => (
   </Create>
 );
 
-export { HospitalsList, HospitalsCreate };
+const HospitalsEdit = props => (
+  <Edit title={<span>Edit Hospital </span>} {...props}>
+    <SimpleForm>
+      <TextInput source="name" />
+      <ArrayInput label="Insert Hospital Beds" source="hospitalBeds">
+        <SimpleFormIterator>
+          <TextInput label="Patient Name" source="patient.name" />
+          <TextInput label="Patient id" source="patient.id" />
+          <TextInput label="Patient CPF" source="patient.cpf" />
+          <TextInput label="Patient Age" source="patient.age" />
+          <TextInput label="Patient Phone" source="patient.phone" />
+          <TextInput
+            label="Patient Observations"
+            source="patient.observations"
+          />
+          <DateInput
+            label="Patient Hospitalization Date"
+            source="patient.hospitalizationDate"
+          />
+          <ArrayInput label="Insert Patient Medicines" source="patient.medicines">
+            <SimpleFormIterator>
+              <TextInput source="id" label="id" />
+              <TextInput source="title" label="title" />
+              <TextInput source="stripe" label="stripe" />
+            </SimpleFormIterator>
+          </ArrayInput>
+        </SimpleFormIterator>
+      </ArrayInput>
+    </SimpleForm>
+  </Edit>
+);
+
+export { HospitalsList, HospitalsCreate, HospitalsEdit };

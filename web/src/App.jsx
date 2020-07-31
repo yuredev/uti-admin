@@ -2,7 +2,7 @@ import React from 'react';
 import { Admin, Resource } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
 import { PatientsList, PatientCreate, PatientEdit } from './resources/Patients';
-import { HospitalsList, HospitalsCreate } from './resources/Hospitals';
+import { HospitalsList, HospitalsCreate, HospitalsEdit } from './resources/Hospitals';
 import { HospitalBedsList, HospitalBedsCreate, HospitalsBedsEdit } from './resources/HospitalBeds';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { FaHospital, FaUser } from 'react-icons/fa';
@@ -49,10 +49,10 @@ export default () => {
         list={HospitalsList}
         icon={FaHospital}
         create={HospitalsCreate}
+        edit={HospitalsEdit}
       />
       <Resource
         name="hospital-beds"
-        label="Hospital Beds"
         icon={GiBed}
         options={{ label: 'Beds' }}
         list={HospitalBedsList}
