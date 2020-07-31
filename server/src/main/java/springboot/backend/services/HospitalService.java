@@ -28,10 +28,11 @@ public class HospitalService {
 
     public Hospital save(Hospital hospital) {
         List<HospitalBed> beds = hospital.getHospitalBeds();
-
         // salvar todas os leitos antes de salvar o hospital
-        for (HospitalBed bed: beds) {
-            bedService.save(bed);
+        if (beds != null) {
+            for (HospitalBed bed : beds) {
+                bedService.save(bed);
+            }
         }
         return hospitalRepository.save(hospital);
     }
