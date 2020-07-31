@@ -15,7 +15,7 @@ e
 <a href="https://marmelab.com/react-admin/">
   <img src="./screenshots/react-admin.png" alt="react-admin" height="18">
   React Admin
-</a>
+</a>.
 
 <p align="center"> 
   Este projeto foi desenvolvido como trabalho final da disciplina de Programação Web da 
