@@ -37,9 +37,9 @@ e
 <h3> Telas </h3>
 
 <p align="center">
-  <img src="screenshots/edit-gif.gif">
   <img src="screenshots/patients.png">
   <img src="screenshots/hospital-beds.png">
+  <img src="screenshots/edit-gif.gif">
   <img src="screenshots/medicines.png">
 </p>
 
