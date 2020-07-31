@@ -1,5 +1,5 @@
 <div style="display:flex; justify-content:center;">
-    <img alt="" width="60" title="" src="./imgs/logo.png">
+    <img alt="" width="60" title="" src="./screenshots/logo.png">
     <h1>&nbsp;<strong> UTI-ADMIN </strong></h1>
 </div>
 
@@ -8,17 +8,17 @@
 <h3 align="center"> Desenvolvido Com a Stack
 
 <a href="https://spring.io/projects/spring-boot">
-<img src="imgs/spring-boot.png" alt="node" height="18"> 
+<img src="screenshots/spring-boot.png" alt="node" height="18"> 
 Spring Boot,
 </a>
 
 <a href="https://pt-br.reactjs.org">
-  <img src="imgs/react.png" alt="react" height="18"> 
+  <img src="screenshots/react.png" alt="react" height="18"> 
   React
 </a>, 
 e 
 <a href="https://marmelab.com/react-admin/">
-  <img src="./imgs/react-admin.png" alt="react-admin" height="18">
+  <img src="./screenshots/react-admin.png" alt="react-admin" height="18">
   React Admin
 </a>
 
@@ -52,10 +52,10 @@ e
 <h3> Telas </h3>
 
 <p align="center">
-  <img src="imgs/edit-gif.gif">
-  <img src="imgs/patients.png">
-  <img src="imgs/hospital-beds.png">
-  <img src="imgs/medicines.png">
+  <img src="screenshots/edit-gif.gif">
+  <img src="screenshots/patients.png">
+  <img src="screenshots/hospital-beds.png">
+  <img src="screenshots/medicines.png">
 </p>
 
 <h4 align="center"> <em>&lt;/&gt;</em> by <a href="https://github.com/yuredev" target="_blank">yuredev</a> </h4>
