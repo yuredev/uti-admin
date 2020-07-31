@@ -39,7 +39,7 @@ e
 <p align="center">
   <img src="screenshots/patients.png">
   <img src="screenshots/hospital-beds.png">
-  <img src="screenshots/edit-gif.gif">
+  <img src="screenshots/edit-gif.gif"> <br/>
   <img src="screenshots/medicines.png">
 </p>
 
