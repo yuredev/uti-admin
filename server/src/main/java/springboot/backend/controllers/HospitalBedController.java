@@ -56,10 +56,12 @@ public class HospitalBedController {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         HospitalBed bedFound = service.getOne(id);
+        var responseMsg = new HashMap<>();
+        responseMsg.put("message", "The bed was successfully deleted");
         if (bedFound == null) {
             return ResponseEntity.notFound().build();
         }
         service.delete(bedFound);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(responseMsg);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import springboot.backend.models.Patient;
 import springboot.backend.services.PatientService;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,7 @@ public class PatientController {
     }
 
     @GetMapping(path = {"/{id}"})
-    public ResponseEntity<Patient> getByCpf(@PathVariable Integer id) {
+    public ResponseEntity<Patient> getOne(@PathVariable Integer id) {
         Patient patientFound = patientService.getOne(id);
         if (patientFound == null) {
             return ResponseEntity.notFound().build();
@@ -54,10 +55,12 @@ public class PatientController {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         Patient patientFound = patientService.getOne(id);
+        var reponseMsg = new HashMap();
         if (patientFound == null) {
             return ResponseEntity.notFound().build();
         }
+        reponseMsg.put("message", "the patient was successfully deleted");
         patientService.delete(patientFound);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(reponseMsg);
     }
 }

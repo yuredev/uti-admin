@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import springboot.backend.models.Medicine;
 import springboot.backend.services.MedicineService;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -53,10 +54,12 @@ public class MedicineController {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         Medicine medicineFound = medicineService.getOne(id);
+        var responseMsg = new HashMap<>();
+        responseMsg.put("message", "The medicine was successfully deleted");
         if (medicineFound == null) {
             return ResponseEntity.notFound().build();
         }
         medicineService.delete(medicineFound);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(responseMsg);
     }
 }
