@@ -1,8 +1,3 @@
-<div style="display:flex; justify-content:center;">
-    <img alt="" width="60" title="" src="./screenshots/logo.png">
-    <h1>&nbsp;<strong> UTI-ADMIN </strong></h1>
-</div>
-
 <h2 align="center"> Gerenciador de Leitos de UTI</h2>
 
 <h3 align="center"> Desenvolvido Com a Stack
@@ -25,16 +20,6 @@ e
 <p align="center"> 
   Este projeto foi desenvolvido como trabalho final da disciplina de Programação Web da 
   faculdade de Análise e Desenvolvimento de Sistemas da <a href="https://ufrn.br/">UFRN</a>
-</p>
-<p align="center" style="font-size:10px;">
-  "Icon made by 
-  <a href="https://www.flaticon.com/br/autores/smalllikeart">
-    smalllikeart 
-  </a>
-  from 
-  <a href="https://www.flaticon.com/">
-    www.flaticon.com"
-  </a>
 </p>
 
 ---
