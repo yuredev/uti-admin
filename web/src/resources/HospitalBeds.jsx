@@ -5,45 +5,69 @@ import {
   TextField,
   Create,
   SimpleForm,
-  SelectInput,
-  ReferenceInput,
+  EditButton,
+  SimpleFormIterator,
+  ArrayInput,
   TextInput,
-  ReferenceField,
+  Edit,
 } from 'react-admin';
 
-const HospitalBedsList = props => (
+const HospitalBedsList = (props) => (
   <List {...props}>
     <Datagrid>
       <TextField source="id" />
-      <ReferenceField source="id" reference="patients" label="Patient Name">
-        <TextField source="name" />
-      </ReferenceField>
+      <TextField source="patient.name" label="Ocuped by" />
+      <TextField source="patient.observations" label="Observations" />
+      <EditButton />
     </Datagrid>
   </List>
 );
 
-const HospitalBedsCreate = props => (
-  <Create title={<span>Insert Hospital Bed</span>} {...props} >
+const HospitalBedsCreate = (props) => (
+  <Create title={<span>Insert Hospital Bed</span>} {...props}>
     <SimpleForm>
-      <h1>Não deu</h1>
-      <ReferenceInput source="patients.id" reference="patients" label="Patient id">
-        <SelectInput optionText="name" />
-      </ReferenceInput>   
-      <h1>Não deu tbm</h1>  
-      <ReferenceInput source="cpf" reference="patients" label="Patient cpf">
-        <TextInput source="cpf" />
-      </ReferenceInput>     
-      <ReferenceInput source="name" reference="patients" label="Patient name">
-        <TextInput source="name" />
-      </ReferenceInput>   
-      {/* <ReferenceInput source="id" reference="patients" label="Patient id">
-        <TextInput source="id" />
-      </ReferenceInput>   
-      <ReferenceInput source="id" reference="patients" label="Patient id">
-        <TextInput source="id" />
-      </ReferenceInput>    */}
+      <TextInput label="Patient Name" source="patient.name" />
+      <TextInput label="Patient CPF" source="patient.cpf" />
+      <TextInput label="Patient Age" source="patient.age" />
+      <TextInput label="Patient Phone" source="patient.phone" />
+      <TextInput label="Patient Observations" source="patient.observations" />
+      <TextInput
+        label="Patient Hospitalization Date"
+        source="patient.hospitalizationDate"
+      />
+      <ArrayInput label="Patient Medicines" source="patient.medicines">
+        <SimpleFormIterator>
+          <TextInput source="id" label="id" />
+          <TextInput source="title" label="title" />
+          <TextInput source="stripe" label="stripe" />
+        </SimpleFormIterator>
+      </ArrayInput>
     </SimpleForm>
   </Create>
-)
+);
 
-export { HospitalBedsList, HospitalBedsCreate };
+const HospitalsBedsEdit = (props) => (
+  <Edit title={<span>Edit Hospital Bed</span>} {...props}>
+    <SimpleForm>
+      <TextInput label="Patient Name" source="patient.name" />
+      <TextInput label="Patient ID" source="patient.id" />
+      <TextInput label="Patient CPF" source="patient.cpf" />
+      <TextInput label="Patient Age" source="patient.age" />
+      <TextInput label="Patient Phone" source="patient.phone" />
+      <TextInput label="Patient Observations" source="patient.observations" />
+      <TextInput
+        label="Patient Hospitalization Date"
+        source="patient.hospitalizationDate"
+      />
+      <ArrayInput label="Patient Medicines" source="patient.medicines">
+        <SimpleFormIterator>
+          <TextInput source="id" label="id" />
+          <TextInput source="title" label="title" />
+          <TextInput source="stripe" label="stripe" />
+        </SimpleFormIterator>
+      </ArrayInput>
+    </SimpleForm>
+  </Edit>
+);
+
+export { HospitalBedsList, HospitalBedsCreate, HospitalsBedsEdit };
