@@ -1,4 +1,4 @@
-<h2 align="center"> Gerenciador de Leitos de UTI</h2>
+<h2 align="center"> 🏥 Gerenciador de Leitos de UTI</h2>
 
 <h3 align="center"> Desenvolvido Com a Stack
 
