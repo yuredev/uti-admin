@@ -1,4 +1,4 @@
-<h2 align="center"> Gerenciador de Leitos de UTI</h2>
+<h2 align="center"> 🏥 Gerenciador de Leitos de UTI</h2>
 
 <h3 align="center"> Desenvolvido Com a Stack
 
@@ -17,6 +17,8 @@ e
   React Admin
 </a>.
 
+</h3>
+
 <p align="center"> 
   Este projeto foi desenvolvido como trabalho final da disciplina de Programação Web da 
   faculdade de Análise e Desenvolvimento de Sistemas da <a href="https://ufrn.br/">UFRN</a>
@@ -26,21 +28,79 @@ e
 
 <h3> Conhecimentos Aplicados </h3>
 
-> Arquitetura REST
+- Arquitetura REST
 
-> Conceitos HTTP
+- Conceitos HTTP
 
-> Mapeamento Objeto Relacional (ORM)
+- Mapeamento Objeto Relacional (ORM)
 
-> Modelo MVC
+- Modelo MVC
 
-<h3> Telas </h3>
+---
+
+<h3>Diagrama de Classes</h3>
 
 <p align="center">
-  <img src="screenshots/hospital-beds.png">
-  <img src="screenshots/patients.png">
-  <img src="screenshots/edit-gif.gif"> <br/>
-  <img src="screenshots/medicines.png">
+  <img style="
+    max-width: 800px;"
+    src="screenshots/class-diagram.png"
+  >
 </p>
+
+<h3>Modelo Entidade Relacionamento do Banco de Dados</h3>
+
+<p align="center">
+  <img style="
+    max-width: 800px;"
+    src="screenshots/database-mer.png"
+  >
+</p>
+
+---
+
+<h3> Visual </h3>
+
+<p align="center">
+  <img style="
+    border-width: 10px; 
+    border-style: solid; 
+    border-color: black; 
+    max-width: 800px;
+    border-radius: 5px" 
+    src="screenshots/edit-gif.gif"
+  >
+  <img style="
+    border-width: 10px; 
+    border-style: solid; 
+    border-color: black;
+    max-width: 800px;
+    border-radius: 5px" 
+    src="screenshots/hospital-beds.png"
+  >
+  <img style="
+    border-width: 10px; 
+    border-style: solid; 
+    border-color: black;
+    max-width: 800px;
+    border-radius: 5px" 
+    src="screenshots/patients.png"
+  >
+  <h3>Responsivo Para Celulares</h3>
+  <img style="
+    border-width: 40px 10px; 
+    border-style: solid; 
+    border-color: black;
+    border-radius: 20px" 
+    src="screenshots/medicines.png"
+  >
+  <img style="
+    border-width: 40px 10px; 
+    border-style: solid; 
+    border-color: black;
+    border-radius: 20px" 
+    src="screenshots/side-menu.png"
+  >
+</p>
+
 
 <h4 align="center"> <em>&lt;/&gt;</em> by <a href="https://github.com/yuredev" target="_blank">yuredev</a> </h4>
