@@ -6,14 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springboot.backend.models.HospitalBed;
 import springboot.backend.services.HospitalBedService;
-import springboot.backend.utils.Message;
 
 import java.util.HashMap;
 import java.util.List;
 
 @RestController
 @RequestMapping("/hospital-beds")
-@CrossOrigin(origins = {"http://localhost:3000"}, exposedHeaders = "X-Total-Count")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8081"}, exposedHeaders = "X-Total-Count")
 public class HospitalBedController {
     private HospitalBedService service;
 
