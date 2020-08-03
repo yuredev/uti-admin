@@ -68,6 +68,14 @@ e
     max-width: 800px;
     border-radius: 5px" 
     src="screenshots/edit-gif.gif"
+  > 
+  <img style="
+    border-width: 10px; 
+    border-style: solid; 
+    border-color: black;
+    max-width: 800px;
+    border-radius: 5px" 
+    src="screenshots/patients.png"
   >
   <img style="
     border-width: 10px; 
@@ -76,14 +84,6 @@ e
     max-width: 800px;
     border-radius: 5px" 
     src="screenshots/hospital-beds.png"
-  >
-  <img style="
-    border-width: 10px; 
-    border-style: solid; 
-    border-color: black;
-    max-width: 800px;
-    border-radius: 5px" 
-    src="screenshots/patients.png"
   >
   <h3>Responsivo Para Celulares</h3>
 </p>
