@@ -26,38 +26,6 @@ e
 
 ---
 
-<h3> Conhecimentos Aplicados </h3>
-
-- Arquitetura REST
-
-- Conceitos HTTP
-
-- Mapeamento Objeto Relacional (ORM)
-
-- Modelo MVC
-
----
-
-<h3>Diagrama de Classes</h3>
-
-<p align="center">
-  <img style="
-    max-width: 800px;"
-    src="screenshots/class-diagram.PNG"
-  >
-</p>
-
-<h3>Modelo Entidade Relacionamento do Banco de Dados</h3>
-
-<p align="center">
-  <img style="
-    max-width: 800px;"
-    src="screenshots/database-mer.PNG"
-  >
-</p>
-
----
-
 <h3> Visual </h3>
 
 <p align="center">
@@ -104,4 +72,35 @@ e
   >
 </p>
 
+---
+
+<h3> Conhecimentos Aplicados </h3>
+
+- Arquitetura REST
+
+- Conceitos HTTP
+
+- Mapeamento Objeto Relacional (ORM)
+
+- Modelo MVC
+
+<h3>Diagrama de Classes</h3>
+
+<p align="center">
+  <img style="
+    max-width: 800px;"
+    src="screenshots/class-diagram.PNG"
+  >
+</p>
+
+<h3>Modelo Entidade Relacionamento do Banco de Dados</h3>
+
+<p align="center">
+  <img style="
+    max-width: 800px;"
+    src="screenshots/database-mer.PNG"
+  >
+</p>
+
 <h4 align="center"> <em>&lt;/&gt;</em> by <a href="https://github.com/yuredev" target="_blank">yuredev</a> </h4>
+
